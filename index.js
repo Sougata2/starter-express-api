@@ -27,7 +27,6 @@ async function writeDataFile(writeData, writeObj) {
   }
 }
 
-
 // Add middleware to enable CORS
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -60,8 +59,8 @@ app.get("/:name/:id", async function (req, res) {
 app.post("/cities/add", function (req, res) {
   const data = req.body;
   console.log(data);
-  writeDataFile(data, 'cities');
-  res.send(JSON.stringify(data));
+  writeDataFile(data, "cities");
+  res.send("City Added");
 });
 
 app.listen(process.env.PORT || 3000);
