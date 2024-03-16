@@ -2,7 +2,12 @@ const express = require("express");
 const fs = require("fs-extra");
 const bodyParser = require("body-parser");
 const app = express();
-const {createCity, getCityById, getCityList} = require("./dynamoDb");
+const {
+  createCity,
+  getCityById,
+  getCityList,
+  deleteCity,
+} = require("./dynamoDb");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -31,8 +36,7 @@ async function writeDataFile(writeData, writeObj) {
   }
   return "City Added";
 }
-*/ 
-
+*/
 
 // Add middleware to enable CORS
 app.use((req, res, next) => {
@@ -55,19 +59,26 @@ app.get("/:name", async (req, res) => {
   res.json(data[name]);
 });
 
-app.get("/:name/:id", async function (req, res) {
-  console.log("Just got a request!");
-  const name = req.params.name;
+app.get("/cities/:id", async function (req, res) {
+  console.log("Just got a request! ID");
   const id = req.params.id;
   const data = await getCityById(id);
   res.json(data);
 });
 
 app.post("/cities/add", async function (req, res) {
+  console.log("Just got a request! CREATE");
   const data = req.body;
   console.log(data);
   const createId = await createCity(data);
   res.send(createId);
+});
+
+app.post("/cities/delete", async function (req, res) {
+  console.log("Just got a request! DELETE");
+  const id = req.body.id;
+  deleteCity(id);
+  res.send(id);
 });
 
 app.listen(process.env.PORT || 3000);

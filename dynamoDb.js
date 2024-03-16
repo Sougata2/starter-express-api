@@ -25,9 +25,9 @@ async function getCityList(collectionName = "cities") {
 async function getCityById(cityId) {
   const cities = await db.collection("cities");
   const city = await cities.get(cityId);
-  const { country, notes, cityName, emoji, position, id } =
+  const { country, notes, cityName, emoji, date, position, id } =
     Object.values(city)[2];
-  return { country, notes, cityName, emoji, position, id };
+  return { country, notes, cityName, emoji, date, position, id };
 }
 
 async function deleteCity(cityId) {
@@ -36,4 +36,4 @@ async function deleteCity(cityId) {
   return cityId;
 }
 
-module.exports = { getCityById, getCityList, createCity };
+module.exports = { getCityById, getCityList, createCity, deleteCity };
