@@ -2,7 +2,7 @@ const express = require("express");
 const fs = require("fs-extra");
 const bodyParser = require("body-parser");
 const app = express();
-const { createCity, getCityList, getCityById } = require("./firebase");
+const {createCity, getCityById, getCityList} = require("./dynamoDb");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
