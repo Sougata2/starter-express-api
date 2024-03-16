@@ -7,6 +7,33 @@ const { createCity, getCityList, getCityById } = require("./firebase");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+/*
+// For future referance only
+async function readDataFile() {
+  const obj = await fs.readJSON("./data/cities.json");
+  return obj;
+}
+
+async function writeDataFile(writeData, writeObj) {
+  const readData = await readDataFile();
+  // console.log(readData);
+  const id = Math.ceil(Math.random() * 99999999);
+  const newData = { ...writeData, id };
+  const finalData = {
+    cities: Object.values(readData[writeObj]).concat(newData),
+  };
+  console.log(finalData);
+  try {
+    await fs.writeJSON("./data/cities.json", finalData);
+  } catch (err) {
+    console.log(err);
+    return "Opps! something went wrong";
+  }
+  return "City Added";
+}
+*/ 
+
+
 // Add middleware to enable CORS
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
