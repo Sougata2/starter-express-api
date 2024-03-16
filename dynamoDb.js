@@ -30,5 +30,10 @@ async function getCityById(cityId) {
   return { country, notes, cityName, emoji, position, id };
 }
 
+async function deleteCity(cityId) {
+  const cities = await db.collection("cities");
+  cities.delete(cityId);
+  return cityId;
+}
 
 module.exports = { getCityById, getCityList, createCity };
