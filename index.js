@@ -24,7 +24,9 @@ async function writeDataFile(writeData, writeObj) {
     await fs.writeJSON("./data/cities.json", finalData);
   } catch (err) {
     console.log(err);
+    return "Opps! something went wrong";
   }
+  return "City Added";
 }
 
 // Add middleware to enable CORS
