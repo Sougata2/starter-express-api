@@ -61,8 +61,8 @@ app.get("/:name/:id", async function (req, res) {
 app.post("/cities/add", function (req, res) {
   const data = req.body;
   console.log(data);
-  writeDataFile(data, "cities");
-  res.send("City Added");
+  const message = writeDataFile(data, "cities");
+  res.send(message);
 });
 
 app.listen(process.env.PORT || 3000);
