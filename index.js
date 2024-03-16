@@ -49,6 +49,16 @@ app.use((req, res, next) => {
 });
 app.all("/", (req, res) => {
   console.log("Just got a request!");
-  res.json(json);
+  res.send("Express api");
+});
+app.all("/:name", (req, res) => {
+  const name = req.params.name;
+  console.log("Just got a request!");
+  res.json(json[name]);
+});
+app.all("/:name/:id", function (req, res) {
+  const name = req.params.name;
+  const id = req.params.id;
+  res.json(json[name].filter((city) => city.id === +id));
 });
 app.listen(process.env.PORT || 3000);
