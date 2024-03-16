@@ -58,10 +58,10 @@ app.get("/:name/:id", async function (req, res) {
   res.json(data[name].filter((city) => city.id === +id));
 });
 
-app.post("/cities/add", function (req, res) {
+app.post("/cities/add", async function (req, res) {
   const data = req.body;
   console.log(data);
-  const message = writeDataFile(data, "cities");
+  const message = await writeDataFile(data, "cities");
   res.send(message);
 });
 
