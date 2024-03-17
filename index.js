@@ -70,15 +70,15 @@ app.post("/cities/add", async function (req, res) {
   console.log("Just got a request! CREATE");
   const data = req.body;
   console.log(data);
-  const createId = await createCity(data);
-  res.send(createId);
+  const city = await createCity(data);
+  res.json(city);
 });
 
 app.post("/cities/delete", async function (req, res) {
   console.log("Just got a request! DELETE");
   const id = req.body.id;
   deleteCity(id);
-  res.send(id);
+  res.json({ deleteId: id });
 });
 
 app.listen(process.env.PORT || 3000);
