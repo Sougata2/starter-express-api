@@ -6,7 +6,8 @@ async function createCity(cityObject) {
   const cityId = uniqid();
   const cities = db.collection("cities");
   const city = await cities.set(cityId, { ...cityObject, id: cityId });
-  return cityId;
+  console.log(Object.values(city)[2]);
+  return Object.values(city)[2];
 }
 
 async function getCityList(collectionName = "cities") {
